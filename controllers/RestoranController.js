@@ -21,7 +21,7 @@ exports.index = async (req, res) => {
             })
         }
 
-        res.json({message : 'Success Get All Restoran', response : restorans});
+        res.json({message : 'Success Get All Restoran', data : restorans});
     } catch (error) {
         res.status(400).json({success: 'false', message: error});
     }
@@ -48,7 +48,7 @@ exports.getByCategory = async (req, res) => {
             })
         }
 
-        res.json({message : 'Success Get All Restoran', response : restorans});
+        res.json({message : 'Success Get All Restoran', data : restorans});
     } catch (error) {
         res.status(400).json({success: 'false', message: error});
     }
@@ -67,7 +67,7 @@ exports.show = async (req, res) => {
             return res.json({message : 'Data not Found'});
         }
 
-        res.json({message : 'Success Get Restoran', response : restoran});
+        res.json({message : 'Success Get Restoran', data : restoran});
     } catch (error) {
         res.status(400).json({success: 'false', message: error});
     }

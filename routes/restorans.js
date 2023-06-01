@@ -10,11 +10,11 @@ const {
   const {verifyToken} = require('../middleware/authJWT');
 
 // Get All
-router.get('/', verifyToken, index);
+router.get('/', index);
 // Get By Kategori
-router.get('/get-by-category/:category', verifyToken, getByCategory);
+router.get('/get-by-category/:category', getByCategory);
 // Get by id
-router.get('/:id', verifyToken, show);
+router.get('/:id', show);
 // Store
 router.post('/', verifyToken, store);
 // Update
