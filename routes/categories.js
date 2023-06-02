@@ -9,7 +9,7 @@ const {
 const {verifyToken} = require('../middleware/authJWT');
 
 //Get All
-router.get('/', verifyToken, index);
+router.get('/', index);
 // Gey by id
 router.get('/:id', verifyToken, show);
 // Store
