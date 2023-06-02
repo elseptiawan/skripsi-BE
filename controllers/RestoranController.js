@@ -75,7 +75,7 @@ exports.show = async (req, res) => {
 
 exports.store = async (req, res) => {
     const schema = {
-        kategori_id : 'number',
+        kategori_id : 'string|empty:false',
         nama : 'string|empty:false',
         kecamatan : 'string|empty:false',
         alamat : 'string|empty:false',
@@ -126,6 +126,22 @@ exports.update = async (req, res) => {
         restoran = await restoran.update(req.body);
 
         res.json({message : 'Success Update Restoran', response : restoran});
+    } catch (error) {
+        res.status(400).json({success: 'false', message: error});
+    }
+}
+
+exports.destroy = async (req, res) => {
+    try{
+        var restoran = await Restoran.findByPk(req.params.id);
+
+        if(!restoran) {
+            return res.json({message : 'Data not Found'});
+        }
+
+        await restoran.destroy();
+
+        res.json({message : 'Success Delete Restoran', response : restoran});
     } catch (error) {
         res.status(400).json({success: 'false', message: error});
     }

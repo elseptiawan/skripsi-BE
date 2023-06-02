@@ -23,8 +23,12 @@ exports.login = async(req, res) => {
                 email: req.body.email
             }
         });
+
+        if (!user){
+            return res.status(400).json({success: 'false', message: 'Email Tidak ditemukan'});
+        }
         const match = await bcrypt.compareSync(req.body.password, user.password);
-        if(!match) return res.status(400).json({success: 'false', message: 'wrong password'});
+        if(!match) return res.status(400).json({success: 'false', message: 'Password Salah'});
         const userId = user.id;
         const email = user.email;
 
