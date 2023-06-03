@@ -79,3 +79,19 @@ exports.update = async (req, res) => {
         res.status(400).json({success: 'false', message: error});
     }
 }
+
+exports.destroy = async (req, res) => {
+    try{
+        var kategori = await Category.findByPk(req.params.id);
+
+        if(!kategori) {
+            return res.json({message : 'Data not Found'});
+        }
+
+        await kategori.destroy();
+
+        res.json({message : 'Success Delete Kategori', response : kategori});
+    } catch (error) {
+        res.status(400).json({success: 'false', message: error});
+    }
+}

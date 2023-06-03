@@ -4,7 +4,8 @@ const {
   store,
   update,
   index,
-  show
+  show,
+  destroy
 } = require('../controllers/CategoryController');
 const {verifyToken} = require('../middleware/authJWT');
 
@@ -16,5 +17,7 @@ router.get('/:id', verifyToken, show);
 router.post('/', verifyToken, store);
 // Update
 router.put('/:id', verifyToken, update);
+// Delete
+router.delete('/:id', verifyToken, destroy);
 
 module.exports = router;

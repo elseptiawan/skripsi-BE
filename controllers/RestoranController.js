@@ -101,7 +101,7 @@ exports.store = async (req, res) => {
 
 exports.update = async (req, res) => {
     const schema = {
-        kategori_id : 'number',
+        kategori_id : 'string|empty:false',
         nama : 'string|empty:false',
         kecamatan : 'string|empty:false',
         alamat : 'string|empty:false',
