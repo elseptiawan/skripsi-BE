@@ -8,7 +8,7 @@ const {
     getByCategory,
     destroy
   } = require('../controllers/RestoranController');
-  const {verifyToken} = require('../middleware/authJWT');
+const {verifyToken} = require('../middleware/authJWT');
 
 // Get All
 router.get('/', index);

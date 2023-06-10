@@ -47,3 +47,7 @@ exports.login = async(req, res) => {
         res.status(400).json({success: 'false', message: error});
     }
 }
+
+exports.token = async(req, res) => {
+    res.json({success: 'true'});
+}
