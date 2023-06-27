@@ -9,6 +9,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var categoriesRouter = require('./routes/categories');
 var restoransRouter = require('./routes/restorans');
+var importRouter = require('./routes/import');
+var analisisRouter = require('./routes/analisis');
+var exportRouter = require('./routes/export');
 
 var app = express();
 
@@ -23,5 +26,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/categories', categoriesRouter);
 app.use('/restorans', restoransRouter);
+app.use('/import', importRouter);
+app.use('/analisis', analisisRouter);
+app.use('/export', exportRouter);
 
 module.exports = app;
