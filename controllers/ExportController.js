@@ -5,8 +5,6 @@ const path = require('path');
 const fs = require("fs");
 const PDFDocument = require("pdfkit-table");
 
-const pdfTemplate = require('../documents');
-
 // exports.createPDF = async (req, res) => {
 //     try{
 //         const restorans = await Restoran.findAll({
