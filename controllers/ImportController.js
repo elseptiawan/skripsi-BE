@@ -1,4 +1,4 @@
-const {Restoran, Category} = require('../models');
+const {Restoran, Category, sequelize} = require('../models');
 const multer = require("multer")
 const excelToJson = require("convert-excel-to-json")
 const fs = require("fs-extra")
@@ -25,27 +25,27 @@ exports.importexcel = async (req, res) => {
         const data = excelData.Sheet1
 
         data.forEach((element) => {
-            Category.findOrCreate({
-                where: {
-                  nama: {
-                    [Op.like]: element["Kategori"],
-                  },
-                },
-                defaults: {
-                  nama: element["Kategori"],
-                },
-              }).then(([category]) => {
-                Restoran.create({
-                  kategori_id: category.kategori_id,
-                  nama: element["Nama"],
-                  kecamatan: element["Kecamatan"],
-                  alamat: element["Alamat"],
-                  no_sertifikat: element["Nomor Sertifikat"],
-                  latitude: element["Latitude"],
-                  longtitude: element["Longtitude"],
-                });
-              });
+          Category.findOrCreate({
+            where: {
+              nama: {
+                [Op.like]: element["Kategori"],
+              },
+            },
+            defaults: {
+              nama: element["Kategori"],
+            },
+          }).then(([category]) => {
+            Restoran.create({
+              kategori_id: category.kategori_id,
+              nama: element["Nama"],
+              kecamatan: element["Kecamatan"],
+              alamat: element["Alamat"],
+              no_sertifikat: element["Nomor Sertifikat"],
+              latitude: element["Latitude"],
+              longtitude: element["Longtitude"],
+            });
           });
+        });
 
         // data.map((element) => { 
         //     (async () => {
