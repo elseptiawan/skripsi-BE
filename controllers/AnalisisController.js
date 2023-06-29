@@ -2,7 +2,7 @@ const {Restoran} = require('../models');
 
 const { Op } = require("sequelize");
 
-const statistika_deskriptif = async (category = null) => {
+statistika_deskriptif = async (category = null) => {
     try{
         var jlh_restoran = 0;
         var jlh_per_kecamatan = 0
@@ -27,7 +27,12 @@ const statistika_deskriptif = async (category = null) => {
             });
         }
 
-        const rata_rata = jlh_restoran/30;
+        const jlh_kecamatan = await Restoran.count({
+            distinct : true,
+            col : 'kecamatan'
+        });
+
+        const rata_rata = jlh_restoran/jlh_kecamatan;
 
         var sigma = 0;
 
@@ -42,9 +47,45 @@ const statistika_deskriptif = async (category = null) => {
             const batas_atas = rata_rata + (0.6 * standard_deviasi)
             const batas_bawah = rata_rata - (0.6 * standard_deviasi)
 
-            return {batah_bawah : batas_bawah, batas_atas : batas_atas};
+            return {batas_bawah : batas_bawah, batas_atas : batas_atas};
     } catch (error) {
         return {success: 'false', message: error};
+    }
+}
+
+exports.getBatas = async (req, res) => {
+    try{
+        var jlh_restoran = 0;
+        var jlh_per_kecamatan = 0
+        
+        jlh_restoran = await Restoran.count();
+        jlh_per_kecamatan = await Restoran.count({
+            group: ['kecamatan']
+        });
+
+        const jlh_kecamatan = await Restoran.count({
+            distinct : true,
+            col : 'kecamatan'
+        });
+
+        const rata_rata = jlh_restoran/jlh_kecamatan;
+
+        var sigma = 0;
+
+        jlh_per_kecamatan.forEach(element => {
+            const temp = element['count'] - rata_rata;
+            const kuadrat = temp * temp;
+            sigma = sigma + kuadrat;
+        });
+
+        const standard_deviasi = Math.sqrt(sigma/29);
+
+        const batas_atas = rata_rata + (0.6 * standard_deviasi)
+        const batas_bawah = rata_rata - (0.6 * standard_deviasi)
+
+        res.json({batas_bawah : Math.ceil(batas_bawah), batas_atas : Math.floor(batas_atas)});
+    } catch (error) {
+        res.status(400).json({success: 'false', message: error});
     }
 }
 
@@ -68,7 +109,7 @@ exports.checkKlasifikasi = async (req, res) => {
         if (jlh_restoran > batas.batas_atas){
             klasifikasi = 'Banyak';
         }
-        else if (jlh_restoran < batas.batah_bawah){
+        else if (jlh_restoran < batas.batas_bawah){
             klasifikasi = 'Sedikit';
         }
         else{

@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
 const {
-  analisis,
+  getBatas,
   checkKlasifikasi,
   getJumlah
 } = require('../controllers/AnalisisController');
 
 // import excel
-// router.get('/', analisis);
+router.get('/', getBatas);
 // check klasifikasi
 router.get('/check/:kecamatan/:category?', checkKlasifikasi);
 // get jumlah
