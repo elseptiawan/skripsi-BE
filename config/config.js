@@ -5,7 +5,8 @@ const {
   DB_PASSWORD,
   DB_HOSTNAME,
   DB_NAME,
-  DB_DIALECT
+  DB_DIALECT,
+  DB_PORT
 } = process.env;
 
 module.exports = 
