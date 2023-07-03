@@ -49,5 +49,5 @@ exports.login = async(req, res) => {
 }
 
 exports.token = async(req, res) => {
-    res.json({success: 'true'});
+    res.json({success: true});
 }
