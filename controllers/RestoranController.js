@@ -77,9 +77,9 @@ exports.store = async (req, res) => {
     const schema = {
         kategori_id : 'string|empty:false',
         nama : 'string|empty:false',
+        no_sertifikat : 'string|empty:false',
         kecamatan : 'string|empty:false',
         alamat : 'string|empty:false',
-        no_sertifikat : 'string|empty:false',
         latitude : 'string|empty:false',
         longtitude : 'string|empty:false',
     }
