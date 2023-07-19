@@ -17,6 +17,7 @@ module.exports =
     "database": DB_NAME,
     "host": DB_HOSTNAME,
     "dialect": DB_DIALECT,
+    "port": DB_PORT
   },
   "test": {
     "username": DB_USERNAME,
@@ -24,6 +25,7 @@ module.exports =
     "database": DB_NAME,
     "host": DB_HOSTNAME,
     "dialect": DB_DIALECT,
+    "port": DB_PORT
   },
   "production": {
     "username": DB_USERNAME,
@@ -32,5 +34,6 @@ module.exports =
     "host": DB_HOSTNAME,
     "dialect": DB_DIALECT,
     "port": DB_PORT,
+    "port": DB_PORT
   }
 }
