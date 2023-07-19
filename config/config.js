@@ -16,14 +16,30 @@ module.exports =
     "password": DB_PASSWORD,
     "database": DB_NAME,
     "host": DB_HOSTNAME,
-    "dialect": DB_DIALECT
+    "dialect": DB_DIALECT,
+    "dialectOptions": {
+      ssl: {
+        rejectUnauthorized: true,
+      },
+    },
+    define: {
+      timestamps: false,
+    },
   },
   "test": {
     "username": DB_USERNAME,
     "password": DB_PASSWORD,
     "database": DB_NAME,
     "host": DB_HOSTNAME,
-    "dialect": DB_DIALECT
+    "dialect": DB_DIALECT,
+    "dialectOptions": {
+      ssl: {
+        rejectUnauthorized: true,
+      },
+    },
+    define: {
+      timestamps: false,
+    },
   },
   "production": {
     "username": DB_USERNAME,
@@ -31,6 +47,14 @@ module.exports =
     "database": DB_NAME,
     "host": DB_HOSTNAME,
     "dialect": DB_DIALECT,
-    "port": DB_PORT
+    "port": DB_PORT,
+    "dialectOptions": {
+      ssl: {
+        rejectUnauthorized: true,
+      },
+    },
+    define: {
+      timestamps: false,
+    },
   }
 }
