@@ -18,6 +18,11 @@ module.exports =
     "host": DB_HOSTNAME,
     "dialect": DB_DIALECT,
     "port": DB_PORT,
+    "dialectOptions": {
+      "ssl": {
+          rejectUnauthorized: true,        
+      }
+  }
   },
   "test": {
     "username": DB_USERNAME,
