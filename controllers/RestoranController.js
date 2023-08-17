@@ -13,8 +13,13 @@ exports.index = async (req, res) => {
         if(req.query.search) {
             restorans = await Restoran.findAll({
                 where : {
-                    nama : {
-                        [Op.like]: '%' + req.query.search + '%'
+                    [Op.or]:{
+                        nama : {
+                            [Op.like]: '%' + req.query.search + '%'
+                        },
+                        kecamatan : {
+                            [Op.like]: '%' + req.query.search + '%'
+                        }
                     }
                 },
                 include: ['category']
